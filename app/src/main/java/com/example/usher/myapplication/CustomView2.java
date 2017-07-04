@@ -15,17 +15,17 @@ import android.view.View;
  * Created by USHER on 2017/7/3.
  */
 
-public class CustomView extends View {
+public class CustomView2 extends View {
 
     private int widthSize;
     private int heightSize;
     int color[];
 
-    public CustomView(Context context) {
+    public CustomView2(Context context) {
         super(context);
     }
 
-    public CustomView(Context context, @Nullable AttributeSet attrs) {
+    public CustomView2(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -42,13 +42,15 @@ public class CustomView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setColor(Color.BLUE);
-        paint.setStrokeWidth(15);
+        paint.setStrokeWidth(20);
         Path path = new Path();
         int wd = widthSize / 8;
         paint.setAntiAlias(true);
+        LinearGradient lg = new LinearGradient(wd, 0, 0, 0, Color.RED, Color.BLUE, Shader.TileMode.CLAMP);
+        paint.setShader(lg);
         int hd = heightSize / 5;
         path.moveTo(0, 0);
         path.lineTo(wd, 0);
@@ -56,18 +58,23 @@ public class CustomView extends View {
         path.quadTo(wd * 4, hd * 2, wd * 5, hd);
         path.quadTo(wd * 6, 0, wd * 7, 0);
         path.lineTo(wd * 8, 0);
+
         canvas.drawPath(path, paint);
-        Paint paint2 = new Paint();
-        paint2.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint2.setStrokeWidth(15);
-        LinearGradient lg = new LinearGradient(0, 0, 100, 100, Color.BLUE, Color.RED, Shader.TileMode.MIRROR);
-        paint2.setShader(lg);
         Paint paint1 = new Paint();
         paint1.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint1.setStrokeWidth(2);
+        paint1.setStrokeWidth(5);
         paint1.setColor(Color.BLUE);
         paint.setAntiAlias(true);
-        canvas.drawCircle(wd * 4, (float) (hd * 4), 4, paint1);
+        canvas.drawCircle(wd * 4, (float) (hd * 2.5), 5, paint1);
+
+        Paint paint3 = new Paint();
+        paint3.setColor(Color.WHITE);
+        paint3.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint3.setStrokeWidth(1);
+        paint3.setAntiAlias(true);
+        paint3.setTextSize(20);
+        paint3.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText("20%", 4 * wd, hd, paint3);
     }
 
 
