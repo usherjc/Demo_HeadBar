@@ -46,11 +46,11 @@ public class CustomView3 extends View {
         //绘制贝塞尔曲线
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setStrokeWidth(20);
+        paint.setStrokeWidth(25);
         Path path = new Path();
         int wd = widthSize / 8;
         paint.setAntiAlias(true);
-        LinearGradient lg = new LinearGradient(wd / 2, 0, 0, 0, Color.parseColor("#17abe3"), Color.parseColor("#ea9518"), Shader.TileMode.CLAMP);
+        LinearGradient lg = new LinearGradient(wd, 0, 0, 0, Color.parseColor("#17abe3"), Color.parseColor("#ea9518"), Shader.TileMode.CLAMP);
         paint.setShader(lg);
         int hd = heightSize / 5;
         path.moveTo(0, 0);
