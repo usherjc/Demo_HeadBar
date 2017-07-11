@@ -4,6 +4,16 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!--蓝-->
     <color name="blue_1">#1A237E</color>
+    <color name="blue_2">#313453</color>
+    <color name="blue_3">#1B3045</color>
+    <color name="blue_4">#17abe3</color>
+
+    <!--灰-->
+    <color name="grey_1">#ececec</color>
+
+    <!--黄-->
+    <color name="yellow_1">#ea9518</color>
 
 </resources>

@@ -46,7 +46,7 @@ public class CustomView3 extends View {
         //绘制贝塞尔曲线
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setStrokeWidth(25);
+        paint.setStrokeWidth(15);
         Path path = new Path();
         int wd = widthSize / 8;
         paint.setAntiAlias(true);
@@ -58,24 +58,25 @@ public class CustomView3 extends View {
         path.quadTo(wd * 2, 0, wd * 3, hd);
         path.quadTo(wd * 4, hd * 2, wd * 5, hd);
         path.quadTo(wd * 6, 0, wd * 7, 0);
-        path.lineTo(wd * 8, 0);
+        path.lineTo(wd * 9, 0);
+        path.setFillType(Path.FillType.EVEN_ODD);
         canvas.drawPath(path, paint);
 
         //绘制圆点
         Paint paint1 = new Paint();
-        paint1.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint1.setStrokeWidth(5);
+        paint1.setStyle(Paint.Style.FILL);
+        paint1.setStrokeWidth(1);
         paint1.setColor(Color.parseColor("#17abe3"));
         paint.setAntiAlias(true);
-        canvas.drawCircle(wd * 4, (float) (hd * 2.5), 5, paint1);
+        canvas.drawCircle(wd * 4, (float) (hd * 2.5) + 10, 6, paint1);
 
         //绘制文字
         Paint paint3 = new Paint();
         paint3.setColor(Color.WHITE);
         paint3.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint3.setStrokeWidth(1);
+        paint3.setStrokeWidth(0.8f);
         paint3.setAntiAlias(true);
-        paint3.setTextSize(20);
+        paint3.setTextSize(18);
         paint3.setTextAlign(Paint.Align.CENTER);
         canvas.drawText("20%", 4 * wd, (float) (hd * 1.2), paint3);
 /*

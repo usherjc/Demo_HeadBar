@@ -46,20 +46,20 @@ public class CustomView2 extends View {
         //绘制贝塞尔曲线
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setStrokeWidth(25);
-        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(15);
+//        paint.setStrokeCap(Paint.Cap.ROUND);
         Path path = new Path();
         int wd = widthSize / 8;
         paint.setAntiAlias(true);
         LinearGradient lg = new LinearGradient(0, 0, wd - wd / 2, 0, Color.parseColor("#ea9518"), Color.parseColor("#ea9518"), Shader.TileMode.CLAMP);
         paint.setShader(lg);
         int hd = heightSize / 5;
-        path.moveTo(15, 0);
+        path.moveTo(0, 0);
         path.lineTo(wd, 0);
         path.quadTo(wd * 2, 0, wd * 3, hd);
         path.quadTo(wd * 4, hd * 2, wd * 5, hd);
         path.quadTo(wd * 6, 0, wd * 7, 0);
-        path.lineTo(wd * 8, 0);
+        path.lineTo(wd * 9, 0);
         canvas.drawPath(path, paint);
 
 //        //绘制圆点
@@ -84,7 +84,7 @@ public class CustomView2 extends View {
         Paint paint4 = new Paint();
         paint4.setColor(Color.WHITE);
         paint4.setStyle(Paint.Style.STROKE);
-        paint4.setStrokeWidth(5);
+        paint4.setStrokeWidth(3);
         paint4.setAntiAlias(true);
         Path path1 = new Path();
         path1.moveTo((float) (3.5 * wd) + 2, hd / 2 + 7);
