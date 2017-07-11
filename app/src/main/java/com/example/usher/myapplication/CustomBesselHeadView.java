@@ -20,9 +20,15 @@ import android.view.View;
 public class CustomBesselHeadView extends View {
 
     private Context context;
-
     private int mTotalWidth;
     private int mTotalHight;
+
+    private boolean mIsStart;//是否是第一个
+    private boolean mIsEnd;//是否是最后一个
+    private boolean mIsOperating;//是否正在操作
+    private boolean mIsOperated;//是否已经操作完成
+    private boolean mIsNext;//是否是下一步
+    private boolean mIsPrevious;//是否是前一步
 
     public CustomBesselHeadView(Context context) {
         super(context);
