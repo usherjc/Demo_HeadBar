@@ -18,6 +18,7 @@ public class CustomPageBack extends View {
 
     private int mTotalWidth;
     private int mTotalHight;
+    private boolean isNeedGap = true;
 
     public CustomPageBack(Context context) {
         super(context);
@@ -40,7 +41,7 @@ public class CustomPageBack extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        drawPageBack(canvas, 20, 150);
+        drawPageBack(canvas, 20, 120);
         super.onDraw(canvas);
     }
 
@@ -69,10 +70,14 @@ public class CustomPageBack extends View {
         {
             //到左侧第一个缺口处
             path.lineTo(0, off_y);
-            //开始绘制缺口
-            path.quadTo(0, off_y + 10, 10, off_y + 20);
-            path.quadTo(20, off_y + 30, 10, off_y + 40);
-            path.quadTo(0, off_y + 50, 0, off_y + 70);
+            if (isNeedGap) {
+                //开始绘制缺口
+                path.quadTo(0, off_y + 10, 10, off_y + 20);
+                path.quadTo(20, off_y + 30, 10, off_y + 40);
+                path.quadTo(0, off_y + 50, 0, off_y + 70);
+            } else {
+                path.lineTo(0, off_y + 70);
+            }
         }
         //左下方圆角
         {
@@ -87,10 +92,14 @@ public class CustomPageBack extends View {
         {
             //到右侧第一个缺口处
             path.lineTo(mTotalWidth, off_y + 70);
-            //开始绘制缺口
-            path.quadTo(mTotalWidth, off_y + 50, mTotalWidth - 10, off_y + 40);
-            path.quadTo(mTotalWidth - 20, off_y + 30, mTotalWidth - 10, off_y + 20);
-            path.quadTo(mTotalWidth, off_y + 10, mTotalWidth, off_y);
+            if (isNeedGap) {
+                //开始绘制缺口
+                path.quadTo(mTotalWidth, off_y + 50, mTotalWidth - 10, off_y + 40);
+                path.quadTo(mTotalWidth - 20, off_y + 30, mTotalWidth - 10, off_y + 20);
+                path.quadTo(mTotalWidth, off_y + 10, mTotalWidth, off_y);
+            } else {
+                path.lineTo(mTotalWidth, off_y);
+            }
         }
         //右上方圆角
         {
@@ -100,6 +109,11 @@ public class CustomPageBack extends View {
         path.lineTo(angle, 0);
         path.close();//封闭
         canvas.drawPath(path, paint);
+    }
+
+    public void setNoGap(boolean isNeedGap) {
+        this.isNeedGap = isNeedGap;
+        invalidate();
     }
 
 }
