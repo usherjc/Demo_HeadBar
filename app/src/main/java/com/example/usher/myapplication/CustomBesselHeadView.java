@@ -71,7 +71,7 @@ public class CustomBesselHeadView extends View {
         if (isNow) {
             drawCircleDot(canvas, 5, 6);
         }
-        drawNumPercent(canvas, text, 15, 0, false);
+        drawNumPercent(canvas, text, mTotalWidth / 8, 0, false);
         super.onDraw(canvas);
     }
 
