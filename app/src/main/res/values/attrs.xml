@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomBesselHeadView">
+        <attr name="is_start" format="boolean" />
+        <attr name="is_end" format="boolean" />
+        <attr name="is_operating" format="boolean" />
+        <attr name="is_operated" format="boolean" />
+        <attr name="is_next" format="boolean" />
+        <attr name="is_previous" format="boolean" />
+    </declare-styleable>
+</resources>

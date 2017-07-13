@@ -3,29 +3,36 @@
     android:id="@+id/ll_head_main"
     android:layout_width="match_parent"
     android:layout_height="50dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
     android:orientation="horizontal">
 
     <com.example.usher.myapplication.CustomBesselHeadView
+        android:id="@+id/chv_1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <com.example.usher.myapplication.CustomBesselHeadView
+        android:id="@+id/chv_2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <com.example.usher.myapplication.CustomBesselHeadView
+        android:id="@+id/chv_3"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <com.example.usher.myapplication.CustomBesselHeadView
+        android:id="@+id/chv_4"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
     <com.example.usher.myapplication.CustomBesselHeadView
+        android:id="@+id/chv_5"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />

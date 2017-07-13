@@ -1,6 +1,7 @@
 package com.example.usher.myapplication;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -22,13 +23,14 @@ public class CustomBesselHeadView extends View {
     private Context context;
     private int mTotalWidth;
     private int mTotalHight;
-
-    private boolean mIsStart;//是否是第一个
-    private boolean mIsEnd;//是否是最后一个
-    private boolean mIsOperating;//是否正在操作
-    private boolean mIsOperated;//是否已经操作完成
-    private boolean mIsNext;//是否是下一步
-    private boolean mIsPrevious;//是否是前一步
+    private boolean isLeftEdge;
+    private boolean isRightEdge;
+    private boolean isLeftGradient;
+    private boolean isRightGradient;
+    private int leftColorPath;
+    private int rightColorPath;
+    private boolean isNow;
+    private String text;
 
     public CustomBesselHeadView(Context context) {
         super(context);
@@ -38,6 +40,11 @@ public class CustomBesselHeadView extends View {
     public CustomBesselHeadView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        initAttr(context, attrs);
+    }
+
+    private void initAttr(Context context, @Nullable AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CustomBesselHeadView);
     }
 
     @Override
@@ -54,13 +61,17 @@ public class CustomBesselHeadView extends View {
     protected void onDraw(Canvas canvas) {
         drawBesselSingle(
                 canvas,
-                false,
-                false,
-                false,
-                false,
-                context.getResources().getColor(R.color.blue_4),
-                context.getResources().getColor(R.color.yellow_1)
+                isLeftEdge,
+                isRightEdge,
+                isLeftGradient,
+                isRightGradient,
+                leftColorPath,
+                rightColorPath
         );
+        if (isNow) {
+            drawCircleDot(canvas, 5, 6);
+        }
+        drawNumPercent(canvas, text, 15, 0, false);
         super.onDraw(canvas);
     }
 
@@ -76,17 +87,26 @@ public class CustomBesselHeadView extends View {
      * @param leftColorPath   左侧颜色
      * @param rightColorPath  右侧颜色
      */
-    private void drawBesselSingle(Canvas canvas, boolean isLeftEdge, boolean isRightEdge, boolean isLeftGradient, boolean isRightGradient, int leftColorPath, int rightColorPath) {
+    private void drawBesselSingle(
+            Canvas canvas,
+            boolean isLeftEdge,
+            boolean isRightEdge,
+            boolean isLeftGradient,
+            boolean isRightGradient,
+            int leftColorPath,
+            int rightColorPath
+    ) {
         int x = mTotalWidth / 8;
         int y = mTotalHight / 5;
         //初始化画笔
         Paint paint = new Paint();
-        paint.setColor(Color.DKGRAY);
+        paint.setColor(leftColorPath);
         paint.setStyle(Paint.Style.FILL);
+        paint.setStrokeWidth(2);
         LinearGradient linearGradient = null;
         if (isLeftGradient) {
             linearGradient = new LinearGradient(
-                    25,
+                    20,
                     0,
                     0,
                     0,
@@ -97,12 +117,12 @@ public class CustomBesselHeadView extends View {
         }
         if (isRightGradient) {
             linearGradient = new LinearGradient(
-                    0,
-                    0,
-                    0,
                     mTotalWidth - 20,
-                    rightColorPath,
+                    0,
+                    mTotalWidth,
+                    0,
                     leftColorPath,
+                    rightColorPath,
                     Shader.TileMode.CLAMP
             );
         }
@@ -137,7 +157,7 @@ public class CustomBesselHeadView extends View {
             path.quadTo(x3_1, y3_1, x3_2, y3_2);
             //绘制第二个曲线
             float x3_3 = x * 4;
-            float y3_3 = y * 2 + 8;
+            float y3_3 = y * 2;
             float x3_4 = x * 5;
             float y3_4 = y;
             path.quadTo(x3_3, y3_3, x3_4, y3_4);
@@ -181,7 +201,7 @@ public class CustomBesselHeadView extends View {
             Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/calibril.ttf");
             paint.setTypeface(typeface);
         }
-        int x = mTotalWidth / 2;
+        int x = mTotalWidth / 2 - 2;
         int y = mTotalHight / 5 - off_y;//稍作偏移
         paint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(text, x, y, paint);
@@ -197,11 +217,30 @@ public class CustomBesselHeadView extends View {
     private void drawCircleDot(Canvas canvas, int off_y, float radius) {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.DKGRAY);
+        paint.setColor(leftColorPath);
         paint.setAntiAlias(true);
-        int x = mTotalWidth / 2;
+        int x = mTotalWidth / 2 - 2;
         int y = mTotalHight / 5 * 2 + off_y;
         canvas.drawCircle(x, y, radius, paint);
+    }
+
+    public void setState(boolean isLeftEdge,
+                         boolean isRightEdge,
+                         boolean isLeftGradient,
+                         boolean isRightGradient,
+                         int leftColorPath,
+                         int rightColorPath,
+                         boolean isNow,
+                         String text
+    ) {
+        this.isLeftEdge = isLeftEdge;
+        this.isRightEdge = isRightEdge;
+        this.isLeftGradient = isLeftGradient;
+        this.isRightGradient = isRightGradient;
+        this.leftColorPath = leftColorPath;
+        this.rightColorPath = rightColorPath;
+        this.isNow = isNow;
+        this.text = text;
     }
 
 }
